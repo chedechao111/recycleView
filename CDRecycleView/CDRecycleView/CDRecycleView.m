@@ -29,6 +29,7 @@ static int const kDefaultPageInterval = 2;
     CGFloat _lastContentOffsetX;
     NSTimer *_timer;
     int p_currentPage;
+    CGFloat _lastvelocity;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -116,21 +117,25 @@ static int const kDefaultPageInterval = 2;
 - (void)p_panGestureAction {
     UIGestureRecognizerState state = _pan.state;
     CGFloat translationX = [_pan translationInView:self].x;
+    CGFloat velocity = [_pan velocityInView:self].x;
     CGFloat contentOffsetX = _collectionView.contentOffset.x;
+    
     switch (state) {
         case UIGestureRecognizerStateBegan:
             [self p_timerPause];
             _lastTranslation = 0;
+            _lastvelocity = 0;
             break;
         case UIGestureRecognizerStateChanged:{
-            CGFloat increment = translationX - _lastTranslation;
-            contentOffsetX -= increment;
+            CGFloat incrementVelocity = velocity - _lastvelocity;
+            CGFloat incrementTranslation = translationX - _lastTranslation;
+            contentOffsetX -= incrementTranslation * MIN(MAX(fabs(incrementVelocity),self.size.width), 500) / self.size.width;
             if (contentOffsetX < _collectionView.contentSize.width + _collectionView.contentInset.right && contentOffsetX > 0 - _collectionView.contentInset.left) {
                 [_collectionView setContentOffset:CGPointMake(contentOffsetX, _collectionView.contentOffset.y)];
             }
             _lastTranslation = translationX;
+            _lastvelocity = velocity;
         }
-            break;
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateFailed:{
@@ -268,7 +273,6 @@ static int const kDefaultPageInterval = 2;
     if (_preVisiableCount != _visiableCount) {
         _totalCount = _isRecycle ? _visiableCount + 3 : _visiableCount;
         [self p_storeCellsFrame];
-        [self p_showCurrentPageWithIndex:0];
     }
     _preVisiableCount = _visiableCount;
 }

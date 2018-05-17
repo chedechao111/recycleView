@@ -3,7 +3,7 @@
 //  ZDComponents
 //
 //  Created by zhuchao on 13-12-19.
-//  Copyright (c) 2013年 baidu. All rights reserved.
+//  Copyright (c) 2013年. All rights reserved.
 //
 
 #import "UIView+Additions.h"

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "CDRecycleView.h"
 #import "UIView+Additions.h"
+#import "CDPageControl.h"
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -18,6 +19,9 @@
 @end
 
 @implementation ViewController
+{
+    CDPageControl *_pageControl;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +37,15 @@
     [recycle autoLayoutStartLocation];
     [self.view addSubview:recycle];
     [recycle reloadData];
+    
+    _pageControl = [[CDPageControl alloc] init];
+    _pageControl.isRightAlign = YES;
+    _pageControl.backgroundColor = [UIColor redColor];
+    _pageControl.frame = CGRectMake(0, recycle.bottom, self.view.width, 10);
+    _pageControl.numberOfPages = 9;
+    [self.view addSubview:_pageControl];
+    
+    
 }
 
 -(UIView *)recycleCell:(UICollectionViewCell *)recycleCell cellForItemAtIndex:(int)index{
@@ -52,6 +65,7 @@
 
 - (void)currentPageIndex:(NSUInteger)index{
     NSLog(@"%d",index);
+    _pageControl.currentPage = index;
 }
 
 
