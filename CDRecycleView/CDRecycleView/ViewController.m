@@ -10,11 +10,32 @@
 #import "CDRecycleView.h"
 #import "UIView+Additions.h"
 #import "CDPageControl.h"
+#import "CDPageView.h"
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
-@interface ViewController ()<CDRecycleViewDelegate>
+@interface CDCell : UICollectionViewCell
+
+@property (nonatomic, strong) UILabel *label;
+
+@end
+
+@implementation CDCell
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        _label = [UILabel new];
+        _label.textColor = [UIColor blackColor];
+        _label.frame = CGRectMake(0, 0, 100, 12);
+        [self.contentView addSubview:_label];
+    }
+    return self;
+}
+
+@end
+
+@interface ViewController ()<CDPageViewDelegate>
 
 @end
 
@@ -27,14 +48,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    CDRecycleView *recycle = [[CDRecycleView alloc] initWithFrame:CGRectMake(0, 100, 375, 200)];
+    CDPageView *recycle = [[CDPageView alloc] initWithFrame:CGRectMake(0, 100, 375, 200)];
     recycle.backgroundColor = [UIColor grayColor];
-    recycle.r_size = CGSizeMake(320, recycle.height);
+    recycle.r_size = CGSizeMake(375, recycle.height);
     recycle.r_minimumLineSpacing = 10;
     recycle.interval = 3;
     recycle.isRecycle = YES;
     recycle.delegate = self;
-    [recycle autoLayoutStartLocation];
+//    [recycle registerClass:[CDCell class] forCellWithReuseIdentifier:@"123"];
     [self.view addSubview:recycle];
     [recycle reloadData];
     
@@ -42,25 +63,15 @@
     _pageControl.isRightAlign = YES;
     _pageControl.backgroundColor = [UIColor redColor];
     _pageControl.frame = CGRectMake(0, recycle.bottom, self.view.width, 10);
-    _pageControl.numberOfPages = 9;
+    _pageControl.numberOfPages = 2;
     [self.view addSubview:_pageControl];
     
     
 }
 
--(UIView *)recycleCell:(UICollectionViewCell *)recycleCell cellForItemAtIndex:(int)index{
-    UIView *view = [[UIView alloc] init];
-    view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-    view.backgroundColor = [UIColor blueColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.text = [NSString stringWithFormat:@"%d",index];
-    [view addSubview:label];
-    [label sizeToFit];
-    return view;
-}
 
 - (NSInteger)numberOfItems{
-    return 9;
+    return 2;
 }
 
 - (void)currentPageIndex:(NSUInteger)index{

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F87F726520AD7B0900D57391 /* CDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F87F726420AD7B0900D57391 /* CDPageControl.m */; };
+		F899C68E20B4480D0041165A /* CDPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F899C68D20B4480D0041165A /* CDPageView.m */; };
 		F8E4244120AC451A00E48A03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E4244020AC451A00E48A03 /* AppDelegate.m */; };
 		F8E4244420AC451A00E48A03 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E4244320AC451A00E48A03 /* ViewController.m */; };
 		F8E4244920AC451C00E48A03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8E4244820AC451C00E48A03 /* Assets.xcassets */; };
@@ -40,6 +41,8 @@
 /* Begin PBXFileReference section */
 		F87F726320AD7B0800D57391 /* CDPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDPageControl.h; sourceTree = "<group>"; };
 		F87F726420AD7B0900D57391 /* CDPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDPageControl.m; sourceTree = "<group>"; };
+		F899C68C20B4480D0041165A /* CDPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDPageView.h; sourceTree = "<group>"; };
+		F899C68D20B4480D0041165A /* CDPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDPageView.m; sourceTree = "<group>"; };
 		F8E4243C20AC451A00E48A03 /* CDRecycleView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CDRecycleView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E4243F20AC451A00E48A03 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F8E4244020AC451A00E48A03 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				F8E4244A20AC451C00E48A03 /* LaunchScreen.storyboard */,
 				F8E4244D20AC451C00E48A03 /* Info.plist */,
 				F8E4244E20AC451C00E48A03 /* main.m */,
+				F899C68C20B4480D0041165A /* CDPageView.h */,
+				F899C68D20B4480D0041165A /* CDPageView.m */,
 			);
 			path = CDRecycleView;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				F8E4247920AC466400E48A03 /* NSTimer+SafeTimer.m in Sources */,
 				F8E4244F20AC451C00E48A03 /* main.m in Sources */,
 				F8E4244120AC451A00E48A03 /* AppDelegate.m in Sources */,
+				F899C68E20B4480D0041165A /* CDPageView.m in Sources */,
 				F8E4247420AC461700E48A03 /* CDRecycleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
